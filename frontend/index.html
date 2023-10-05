@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script src="https://unpkg.com/pixi.js@7.x/dist/pixi.min.js"></script>
+    <style>
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <p>
+        We are using Node.js <span id="node-version"></span>,
+        Chromium <span id="chrome-version"></span>,
+        and Electron <span id="electron-version"></span>.
+    </p>
+    <div>fuck you</div>
+</body>
+<script>
+    const app = new PIXI.Application({
+        background: '#1099bb',
+        resizeTo: window,
+    });
+
+    
+    const cooldown = 3.2;
+    let current = 0;
+    app.ticker.add((delta) =>
+    {
+        if (current < cooldown) {
+            current += delta * 0.01;
+        } else {
+            console.log('fuck you');
+            current = 0;
+        }
+    });
+</script>
+</html>
