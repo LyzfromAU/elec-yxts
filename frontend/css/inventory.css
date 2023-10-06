@@ -1,0 +1,32 @@
+.item-card {
+    width: 320px;
+    background-color: blueviolet;
+    font-size: 16px;
+}
+.item-card .outer {
+    padding: 8px;
+}
+.item-card .inner {
+    background-color: burlywood;
+    padding: 16px;
+}
+.item-card .title {
+    font-size: 28px;
+}
+.item-card .type {
+    margin: 4px 0;
+}
+.item-card .dps {
+    margin: 8px 0;
+    font-size: 18px;
+}
+.item-card ul.padding-remove {
+    padding-inline-start: 18px;
+}
+.item-card .divider {
+    width: 100%;
+    border-bottom: 1px solid lightskyblue;
+}
+.item-card .strength {
+    padding-bottom: 12px;
+}
