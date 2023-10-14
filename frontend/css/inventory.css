@@ -30,3 +30,39 @@
 .item-card .strength {
     padding-bottom: 12px;
 }
+
+.modal {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.hover-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: aqua;
+    border: 1px solid #001234;
+    border-radius: 3px;
+    margin-right: 1px;
+}
+.hover-trigger {
+    width: 100%;
+    height: 100%;
+}
+.hover-trigger img {
+    width: 100%;
+}
+.hover-trigger:hover + .modal {
+    display: block;
+}
+#inventoryList, .test {
+    display: none;
+}
+#backpack-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 320px;
+}

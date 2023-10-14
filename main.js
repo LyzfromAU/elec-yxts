@@ -24,6 +24,19 @@ function createWindow () {
       }
     });
   })
+
+  ipcMain.on('read-file', (event, filePath) => {
+    // Read the contents of the local file using the fs module
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading file:', err);
+        event.reply('read-file-response', { success: false, error: err.message });
+      } else {
+        console.log('File read successfully:', data);
+        event.reply('read-file-response', { success: true, data: data});
+      }
+    });
+  })
 }
 
 app.whenReady().then(() => {

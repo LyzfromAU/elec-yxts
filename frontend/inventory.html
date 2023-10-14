@@ -5,16 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./jquery.min.js"></script>
+    <script src="./mock1.js"></script>
+    <script src="./mapping.js"></script>
     <script>
-        $(document).ready(function(){
-
+        function getInventory() {
+            let inner = '';
+            inventory.map((item, index) => {
+                inner += '<div class="hover-container" onmouseover="changeModalContent(';
+                inner += index;
+                inner += ')">';
+                inner += '<div class="hover-trigger">';
+                inner += '<img src="' + item.img + '" alt="' + item.title + '" />';
+                inner += '</div>';
+                inner += '<div class="modal modal';
+                inner += '-';
+                inner += index;
+                inner += '">';
+                inner += '<div class="modal-content">';
+                inner += '</div></div></div>';
+            })
+            $('#backpack-container').html(inner);
+        }
+        function changeModalContent(i) {
+            let content = '';
+            content += '<div class="item-card"><div class="outer"><div class="inner"><div class="title">';
+            content += inventory[i].title;
+            content += '</div><div class="type">';
+            content += inventory[i].subType;
+            content += '</div><div class="divider"></div>'
+            content += '<ul class="padding-remove">';
+            inventory[i].attributes.basic.map((attr, index) => {
+                content += '<li>+';
+                if (attr.amount > 1) {
+                    content += attr.amount;
+                } else {
+                    content += (attr.amount * 100).toFixed(1) + '%'
+                }
+                content += attributeMapping[attr.attr] + '</li>'
+            })
+            content += '</ul>';
+            content += '<div class="divider"></div>';
+            content += '<ul class="padding-remove">';
+            inventory[i].attributes.random.map((attr, index) => {
+                content += '<li>+';
+                if (attr.amount > 1) {
+                    content += attr.amount;
+                } else {
+                    content += (attr.amount * 100).toFixed(1) + '%'
+                }
+                content += attributeMapping[attr.attr] + '</li>'
+            })
+            content += '</ul>';
+            content += '</div></div></div>';     
+            $('.modal-content').html(content);
+        }
+    </script>
+    <script>
+        $(document).ready(function(){  
+            $('#inventoryList').html(JSON.stringify(inventory));
+            getInventory();
         })
     </script>
     <link rel="stylesheet" href="./css/inventory.css">
 </head>
 <body>
     <div id="inventory-container">
-        <div class="item-card">
+        <div><button id="write">Write</button></div>
+        <div id="inventoryList">Inventory List</div>
+        <div id="backpack-container">
+
+        </div>
+        <div class="item-card test">
             <div class="outer">
                 <div class="inner">
                     <div class="title">屠夫的砍斧</div>
